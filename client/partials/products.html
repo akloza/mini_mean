@@ -1,0 +1,64 @@
+<style>
+	body{
+		background-image: url('http://www.fashiongonerogue.com/wp-content/uploads/2015/11/Free-People-Sweaters-Fall-Winter-2015-02.jpg');
+		background-size: 1200px;
+	}
+	p{
+		color: white;
+	}
+	#thumbnail{
+		opacity: 0.7;
+		width: 150px;
+		height: 200px;
+		margin: 5px;
+	}
+	input, textarea, select{
+		opacity: 0.7;
+	}
+</style>
+
+<div class="row" ng-controller="ProductsController">
+	<div class="col-md-12">
+		<div class=
+		"col-md-3">
+			<!-- filter here -->
+			<h3>Add a new product</h3>
+			<form>
+				<div class="form-group">
+					<p>Name:</p>
+					<input type="text" ng-model="new_product.name" class="form-control">
+				</div>
+				<div class="form-group">
+					<p>Description:</p>
+					<textarea ng-model="new_product.description" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<p>Quantity:</p>
+					<select ng-model="new_product.quantity" class="form-control">
+						<option ng-repeat='i in quantity' value='{{i}}'>{{ i }}</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="submit" ng-click="add_product()" value="Create Product" class="btn btn-primary">
+				</div>
+			</form>
+		</div>
+
+		<div class="col-md-9">
+			<input type="text" ng-model="product.name" placeholder="filter products">
+			<div class='col-md-12'>
+				<!-- thumbnails of products -->
+				<!-- for loop through products -->
+				<div class="thumbnail col-md-3" id="thumbnail" ng-repeat="product in products | filter: product">
+					<img src="" alt="">
+					<div class="caption">
+						<h3 ng-bind='product.name'></h3>
+						<h4 ng-bind='product.quantity'></h4>
+						<form>
+						<button type="button" ng-click="delete_product(product)" class="btn btn-default">Delete Product</button>
+					</div>
+				</div><!-- end of thumbnail -->
+			</div>
+		</div>
+	</div>
+</div>

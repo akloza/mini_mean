@@ -1,0 +1,49 @@
+<style>
+	body{
+		background-image: url('http://818agency.com/wp-content/uploads/2015/02/FreePeople_Roshambo-Rock_May2013-10.jpg');
+		background-size: 1200px;
+	}
+	.thumbnail{
+		opacity: 0.7;
+		background-color: #eee;
+	}
+	li{
+		color: white;
+		font-size: 1.5em;
+	}
+</style>
+
+<div class="row" ng-controller="DashboardController">
+	<div class="col-md-12">
+		<div class="col-md-3">
+			<!-- filter here -->
+			<input type="text" ng-model="product.name" placeholder="filter products">
+		</div>
+		<div class="col-md-9">
+			<div class='col-md-12'>
+				<!-- thumbnails of products -->
+				<div id="thumbnail" class="thumbnail col-md-3" ng-repeat="product in products | filter: product" style="height:150px">
+					<img src="" alt="">
+					<div class="caption">
+						<h3 ng-bind='product.name'></h3>
+						<h4 ng-bind='product.quantity'></h4>
+					</div>
+				</div><!-- end of thumbnail -->
+			</div>
+			<div class="col-md-12">
+				<h3>Recent Orders</h3>
+				<!-- for loop through a list of orders -->
+				<ul ng-repeat='order in orders track by $index'>
+					<li><span ng-bind='order._customer.name'></span><span> ordered <span ng-bind='order.quantity'></span> <span ng-bind='order.product'></span></li>
+				</ul>
+			</div>
+			<div class="col-md-12">
+				<h3>New Customers</h3>
+				<!-- for loop through a list of customers -->
+				<ul ng-repeat='customer in customers track by $index'>
+					<li><span ng-bind='customer.name'></span> joined the store (<span ng-bind='customer.created_at'></span>)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

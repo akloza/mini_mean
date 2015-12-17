@@ -1,0 +1,147 @@
+<html ng-app='storeApp'>
+<head>
+	<title>MEAN Store</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+	<script>
+		var storeApp = angular.module('storeApp', ['ngRoute']);
+		storeApp.config(function($routeProvider){
+			$routeProvider
+			.when('/', {
+				templateUrl: 'partials/dashboard.html'
+			})
+			.when('/products', {
+				templateUrl: 'partials/products.html'
+			})
+			.when('/orders', {
+				templateUrl: 'partials/orders.html'
+			})
+			.when('/customers', {
+				templateUrl: 'partials/customers.html'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+		});
+	</script>
+	<script type="text/javascript" src="./factories/customers_factory.js"></script>
+	<script type="text/javascript" src="./factories/orders_factory.js"></script>
+	<script type="text/javascript" src="./factories/products_factory.js"></script>
+	<script type="text/javascript" src="./controllers/customers_controller.js"></script>
+	<script type="text/javascript" src="./controllers/orders_controller.js"></script>
+	<script type="text/javascript" src="./controllers/products_controller.js"></script>
+	<script type="text/javascript" src="./controllers/dashboard_controller.js"></script>
+</head>
+<style type="text/css">
+
+	h2{
+		text-align: center;
+		color: #FF493C;
+	}
+	a{
+		color: black;
+	}
+	h3{
+		color: #FF493C;
+	}
+	.list-group-item{
+		color: black;
+	}
+	table, th, td {
+   border: 1px solid grey;
+   margin: 10px;
+   border-collapse: collapse;
+}
+a:visited{
+	color: white;
+}
+
+/*table styling*/
+
+table.hovertable{
+	font-family: verdana,arial, sans-serif;
+	font-size: 11px;
+	color: black;
+	background-color: #868181;
+	border-width: 1px;
+	border-color: black;
+	border-collapse: collapse;
+}
+table.hovertable th{
+	background-color: white;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color:#a9c6c9;
+}
+table.hovertable tr{
+	background-color: white;
+}
+table.hovertable td{
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+	.icon-plus {
+background-color: #000;
+border-radius:8px;
+-webkit-border-radius:8px;
+-moz-border-radius:8px;
+width: 16px;
+height: 16px;
+position: relative;
+top:0;
+left:0;
+}
+.icon-plus:after {
+background-color: #fff;
+width: 8px;
+height: 2px;
+border-radius: 1px;
+-webkit-border-radius: 1px;
+-moz-border-radius: 1px;
+position: absolute;
+top:7px;
+left: 4px;
+  content:"";
+}
+.icon-plus:before {
+background-color: #fff;
+width: 2px;
+height: 8px;
+border-radius: 1px;
+-webkit-border-radius: 1px;
+-moz-border-radius: 1px;
+position: absolute;
+top:4px;
+left: 7px;
+  content:"";
+}
+</style>
+<body>
+
+		<!-- <div class="col-md-12"> -->
+			<div class="container-fluid">
+			<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+				<li><a class="list-group-item" href="#/">Dashboard</a></li>
+				<li><a class="list-group-item" href="#/products">Products</a></li>
+				<li><a class="list-group-item" href="#/orders">Orders</a></li>
+				<li><a class="list-group-item" href="#/customers">Customers</a></li>
+		</ul>
+		</div>
+		<div ng-view='' class="col-md-12">
+		</div>
+	</div>
+
+</body>
+</html>

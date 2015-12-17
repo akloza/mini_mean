@@ -1,0 +1,61 @@
+<style>
+	body{
+		background-image: url('http://fashioneditorials.com/wp-content/uploads/2015/10/Free-People-October-Lookbook-2015-3.jpg');
+		background-size: 1200px;
+	}
+	.hovertable{
+		opacity: 0.7;
+	}
+	input{
+		opacity: 0.7;
+	}
+</style>
+<div class="row" ng-controller='CustomersController'>
+	<div class="col-md-12">
+		<h3>Add a new customer</h3>
+		<form>
+			<div class="form-group">
+			<p>Customer:</p>
+			<input type="text" ng-model="new_customer.name" class="form-control">
+			</div>
+			<div class="form-group">
+			<div class="icon icon-plus" ng-click="add_customer()">
+			</div>
+		</form>
+		<div class="col-md-12">
+			<!-- filter goes here -->
+			<input type="text" ng-model="customer.name" placeholder="filter">
+			<table style="width: 100%" class='hovertable'>
+				<thead>
+					<th>Customer Name</th>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<tr onmouseover = 'this.style.backgroundColor="#868181";' onmouseout='this.style.backgroundColor="#d4e3e5";'ng-repeat='customer in customers | filter: filter_Name | orderBy: created_at'>
+						<td ng-bind='customer.name'></td>
+						<td><button type="button" ng-click="delete_customer(customer)">Remove</td>
+					</tr>
+				</tbody>
+			</table>
+			<table style="width: 100%" class='hovertable'>
+				<input type="text" ng-model="order._customer.name" placeholder="filter">
+				<thead>
+					<th>Customer Name</th>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Date</th>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat='order in orders | filter: order'>
+						<td ng-bind='order._customer.name'>Name</td>
+						<td ng-bind='order.product'>Product</td>
+						<td ng-bind='order.quantity'>Quantity</td>
+						<td ng-bind='order.created_at'>Date</td>
+						<td><button type="button" ng-click="delete_order(order)">Remove</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
